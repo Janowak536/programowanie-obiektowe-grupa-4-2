@@ -101,7 +101,7 @@ namespace lab_1
             //if (currencyComparison != 0) return currencyComparison;
             //return _value.CompareTo(other._value);
         }
-
+        
         public static bool operator <(Money a, Money b)
         {
             IsSameCurrencies(a, b);
@@ -114,7 +114,7 @@ namespace lab_1
     {
         private string _name;
         public int Ects { get; set; }
-
+        //.//
         private Person(string name)
         {
             _name = name;
