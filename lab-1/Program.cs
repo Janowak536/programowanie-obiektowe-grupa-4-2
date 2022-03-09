@@ -9,7 +9,7 @@ namespace lab_1
         EUR = 3
     }
     
-    public class Money
+    public class Money:IComparable<Money>
     {
         private readonly decimal _value;
         private readonly Currency _currency;
@@ -51,11 +51,69 @@ namespace lab_1
             return Money.OfWithException(money.Value * factor, money.Currency);
         }
 
+        public static bool operator >(Money a, Money b)
+        {
+            IsSameCurrencies(a, b);
+            return a.Value > b.Value;
+        }
+
+        private static void IsSameCurrencies(Money a, Money b)
+        {
+            if (a.Currency != b.Currency)
+            {
+                throw new ArgumentException("Inne waluty!");
+            }
+                
+        }
+        public static implicit operator decimal(Money money)
+        {
+            return money.Value;
+        }
+        public static explicit operator double(Money money)
+        {
+            return (double)money.Value;
+        }
+        public static explicit operator string(Money money)
+        {
+            return $"{money.Value} {money.Currency}";
+        }
+
+        public override string ToString()
+        {
+            return $"Value: {_value}, Currency: {_currency}";
+        }
+
+        public int CompareTo(Money? other)
+        {
+            //return Currency.CompareTo(other.Currency);
+            int currencyCon = Currency.CompareTo(other.Currency);
+            if (currencyCon==0)
+            {
+                return Value.CompareTo(other.Value);
+            }
+            else
+            {
+                return currencyCon;
+            }
+            //if (ReferenceEquals(this, other)) return 0;
+            //if (ReferenceEquals(null, other)) return 1;
+            //var currencyComparison = _currency.CompareTo(other._currency);
+            //if (currencyComparison != 0) return currencyComparison;
+            //return _value.CompareTo(other._value);
+        }
+
+        public static bool operator <(Money a, Money b)
+        {
+            IsSameCurrencies(a, b);
+            return a.Value < b.Value;
+        }
+
     }
 
-    public class Person
+    public class Person:IEquatable<Person>
     {
         private string _name;
+        public int Ects { get; set; }
 
         private Person(string name)
         {
@@ -72,6 +130,30 @@ namespace lab_1
                 throw new ArgumentOutOfRangeException("Imię zbyt krótkie");
             }
         }
+
+        public override string ToString()
+        {
+            return $"Name: {_name}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Person person &&
+                   Ects == person.Ects &&
+                   Name == person.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Ects, Name);
+        }
+
+
+        public bool Equals(Person other)
+        {
+            return other.Name.Equals(_name) && other.Ects == Ects;
+        }
+
 
         public string Name
         {
@@ -96,12 +178,37 @@ namespace lab_1
     {
         static void Main(string[] args)
         {
+            
+
             Person person = Person.OfName("Ada");
+            Console.WriteLine(person);
+            Object obj = person;
+            IEquatable<Person> ie = person;
             Console.WriteLine(person.Name == null ?"null":"person");
             Money money = Money.OfWithException(13,Currency.EUR);
             Console.WriteLine(money.Value);
             Money result = 4*money;
             Console.WriteLine(result.Value);
+            Console.WriteLine(money> Money.OfWithException(5,Currency.EUR));
+            decimal money2 = money;
+            double price = (double)money;
+            string str = (string)money;
+            Console.WriteLine(str);
+            Console.WriteLine("SORT");
+            Money[] pricies =
+            {
+                Money.OfWithException(10,Currency.PLN),
+                Money.OfWithException(8,Currency.USD),
+                Money.OfWithException(12,Currency.EUR),
+                Money.OfWithException(6,Currency.PLN),
+                Money.OfWithException(14,Currency.PLN),
+                Money.OfWithException(3,Currency.PLN),
+            };
+            Array.Sort(pricies);
+            foreach(var p in pricies)
+            {
+                Console.WriteLine((string)p);
+            }
         }
     }
 }
