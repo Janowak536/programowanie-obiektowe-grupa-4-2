@@ -65,6 +65,15 @@ namespace lab_1
             }
                 
         }
+        public static void ToCurrency(Money a, Money b)
+        {
+            decimal result;
+            if (a.Currency == Currency.PLN && b.Currency ==Currency.USD)
+            {
+                result = a.Value * 2;
+            }
+
+        }
         public static implicit operator decimal(Money money)
         {
             return money.Value;
@@ -82,11 +91,11 @@ namespace lab_1
         {
             return $"Value: {_value}, Currency: {_currency}";
         }
-
+        
         public int CompareTo(Money? other)
         {
-            //return Currency.CompareTo(other.Currency);
-            int currencyCon = Currency.CompareTo(other.Currency);
+            return Currency.CompareTo(other.Currency);
+            var currencyCon = Currency.CompareTo(other.Currency);
             if (currencyCon==0)
             {
                 return Value.CompareTo(other.Value);
@@ -95,17 +104,64 @@ namespace lab_1
             {
                 return currencyCon;
             }
-            //if (ReferenceEquals(this, other)) return 0;
-            //if (ReferenceEquals(null, other)) return 1;
-            //var currencyComparison = _currency.CompareTo(other._currency);
-            //if (currencyComparison != 0) return currencyComparison;
-            //return _value.CompareTo(other._value);
+            if (ReferenceEquals(this, other)) return 0;
+            if (ReferenceEquals(null, other)) return 1;
+            var currencyComparison = _currency.CompareTo(other._currency);
+            if (currencyComparison != 0) return currencyComparison;
+            return _value.CompareTo(other._value);
         }
         
         public static bool operator <(Money a, Money b)
         {
             IsSameCurrencies(a, b);
             return a.Value < b.Value;
+        }
+
+    }
+    public class Tank
+    {
+        public readonly float Capacity;
+        private float _level;
+        public Tank(float capacity)
+        {
+            Capacity = (float)capacity;
+        }
+        public float Level
+        {
+            get
+            {
+                return _level;
+            }
+            private set
+            {
+                if (value < 0 || value > Capacity)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                _level = value;
+            }
+        }
+        public float refuel(float amount)
+        {
+            if (amount < 0 || _level == Capacity)
+            {
+                return 0;
+            }
+            if (_level + amount > Capacity)
+            {
+                float result = (_level + amount)-Capacity  ;
+                _level = Capacity;
+                if (result > 0)
+                {
+                    Tank tank2 = new Tank(100);
+                    tank2.refuel(result);
+                    Console.WriteLine("tank 2 = " + tank2.Level);
+                }
+                return result;
+            }
+            
+            _level += amount;
+            return amount;
         }
 
     }
@@ -178,6 +234,12 @@ namespace lab_1
     {
         static void Main(string[] args)
         {
+            Tank tank = new Tank(100);
+            Console.WriteLine("tank 1 = " + tank.Level);
+            tank.refuel(10);
+            Console.WriteLine("tank 1 = " + tank.Level);
+            tank.refuel(100);
+            Console.WriteLine("tank 1 = " + tank.Level);
             
 
             Person person = Person.OfName("Ada");
