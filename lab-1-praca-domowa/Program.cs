@@ -81,8 +81,8 @@ namespace lab_1_praca_domowa
     }
     public class BagOfMoney
     {
-        public readonly int Money;//Pojemność worka
-        private int _level;//aktualny stan
+        public readonly int Money;
+        private int _level;
         public BagOfMoney(int money)
         {
             Money = money;
@@ -103,6 +103,9 @@ namespace lab_1_praca_domowa
             }
         }
         public int givingMoney(int giving)
+        /// <summary>
+        /// Change _level of money in the bag
+        /// </summary>
         {
             if (giving < 0 || _level == Money)
             {
@@ -125,6 +128,9 @@ namespace lab_1_praca_domowa
             return giving;
         }
         public int takingMoney(int taking)
+        /// <summary>
+        /// Taking money from the bag only by 5,2,1
+        /// </summary>
         {
             for (int i = 0; i <= _level; i++)
             {
