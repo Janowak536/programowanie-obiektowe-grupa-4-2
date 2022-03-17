@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-1", "lab-1\lab-1.csproj", "{4630C6DC-0BA3-4E64-9D6B-360850E6514A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab-1-praca-domowa", "lab-1-praca-domowa\lab-1-praca-domowa.csproj", "{B52B5EB4-354A-41B8-A731-8634E5440DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-1-praca-domowa", "lab-1-praca-domowa\lab-1-praca-domowa.csproj", "{B52B5EB4-354A-41B8-A731-8634E5440DD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab-2", "lab-2\lab-2.csproj", "{BDAECE44-8F12-4AB2-8C38-08D4E6691AE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B52B5EB4-354A-41B8-A731-8634E5440DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B52B5EB4-354A-41B8-A731-8634E5440DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B52B5EB4-354A-41B8-A731-8634E5440DD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDAECE44-8F12-4AB2-8C38-08D4E6691AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDAECE44-8F12-4AB2-8C38-08D4E6691AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDAECE44-8F12-4AB2-8C38-08D4E6691AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDAECE44-8F12-4AB2-8C38-08D4E6691AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
