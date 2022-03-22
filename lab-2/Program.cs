@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace lab_2
 {
@@ -261,6 +262,74 @@ namespace lab_2
         {
             return new ArrayIntIterator(this);
         }
+
+        public Iterator EvenAndOddIterator() {
+            return new EvenAndOddIterator(this); 
+        } // Tworzenie obiektu EvenAndOddIterator
+
+        public Iterator DivisibleIterator(int k) {
+            return new DivisibleIterator(this, k); 
+        } // Tworzenie obiektu DivisibleIterator
+    }
+    public sealed class EvenAndOddIterator : Iterator
+    {
+        private ArrayIntAggregate _aggregate;
+        private Stack oddStack = new Stack(); // Stos liczb nieparzystych
+        private Queue evenQueue = new Queue(); // Kolejka liczb parzystych
+
+        public EvenAndOddIterator(ArrayIntAggregate aggregate)
+        {
+            _aggregate = aggregate;
+            for (int i = 0; i < _aggregate.array.Length; i++)
+            {
+                if (_aggregate.array[i] % 2 == 0) // Sprawdź czy parzyste
+                {
+                    evenQueue.Enqueue(_aggregate.array[i]); // Jeśli parzysta => dodaj do kolejki 
+                }
+                else oddStack.Push(_aggregate.array[i]); // Jeśli nieparzysta => dodaj na stosu
+            }
+        }
+
+        public override int GetNext() // Dequeue() i Pop() zwraca liczbę i usuwa ją ze zbioru
+        {
+            if (evenQueue.Count > 0) return (int)evenQueue.Dequeue(); // Jeśli kolejka parzystych nie jest pusta => weź z kolejki 
+            else return (int)oddStack.Pop(); // Jeśli kolejka parzystych pusta => weź ze stosu nieparzystych
+        }
+
+        public override bool HasNext()
+        {
+            return evenQueue.Count > 0 || oddStack.Count > 0; // Sprawdź czy kolejce lub stosie coś zostało
+        }
+    }
+    public sealed class DivisibleIterator : Iterator
+    {
+
+        private ArrayIntAggregate _aggregate;
+        private ArrayList divisibleList = new ArrayList(); // Lista liczb podzielnych przez k
+        private int _index = 0;
+
+        public DivisibleIterator(ArrayIntAggregate aggregate, int k) // k - liczba przez, którą będziemy dzielić
+        {
+            _aggregate = aggregate;
+
+            for (int i = 0; i < _aggregate.array.Length; i++)
+            {
+                if (_aggregate.array[i] % k == 0) // Jeśli podzielna => dodaj do listy
+                {
+                    divisibleList.Add(_aggregate.array[i]);
+                }
+            }
+        }
+
+        public override int GetNext()
+        {
+            return (int)divisibleList[_index++];
+        }
+
+        public override bool HasNext()
+        {
+            return _index < divisibleList.Count;
+        }
     }
     public sealed class ArrayIntIterator : Iterator
     {
@@ -278,7 +347,38 @@ namespace lab_2
         {
             return _index < _aggregate.array.Length;
         }
-        
+    }
+    public class ReverseArrayIntAggregate : Aggregate
+    {
+        internal int[] arrayToReverse = { 1, 2, 3, 4, 5 };
+
+        public override Iterator CreateIterator()
+        {
+            return new ReverseArrayIntIterator(this);
+        }
+    }
+    public sealed class ReverseArrayIntIterator : Iterator
+    {
+        private int _indexToReverse = 0;
+        private ReverseArrayIntAggregate _aggregate2;
+        public ReverseArrayIntIterator(ReverseArrayIntAggregate aggregate2)
+        {
+            _aggregate2 = aggregate2;
+        }
+
+        public override int GetNext()
+        {
+            int[] reverseArray = new int[_aggregate2.arrayToReverse.Length];
+            for (int i = 0; i < _aggregate2.arrayToReverse.Length; i++)
+            {
+                reverseArray[i] = _aggregate2.arrayToReverse[_aggregate2.arrayToReverse.Length - 1 - i];
+            }
+            return reverseArray[_indexToReverse++];
+        }
+        public override bool HasNext()
+        {
+            return _indexToReverse < _aggregate2.arrayToReverse.Length;
+        }
     }
     class Program
     {
@@ -377,10 +477,31 @@ namespace lab_2
             Console.WriteLine(flyAndSwimCounter);
             #endregion
             Aggregate aggregate = new ArrayIntAggregate();
+            Console.WriteLine();
+            Aggregate aggregate2 = new ReverseArrayIntAggregate();
             for (var iterator = aggregate.CreateIterator(); iterator.HasNext();)
             {
                 Console.WriteLine(iterator.GetNext());
             }
+            Console.WriteLine();
+            for (var iterator = aggregate2.CreateIterator(); iterator.HasNext();)
+            {
+                Console.WriteLine(iterator.GetNext());
+            }
+            Console.WriteLine();
+            ArrayIntAggregate intAgg = new ArrayIntAggregate();
+            for (var iterator = intAgg.EvenAndOddIterator(); iterator.HasNext();)
+            {
+                Console.WriteLine(iterator.GetNext());
+            }
+
+            Console.WriteLine();
+
+            for (var iterator = intAgg.DivisibleIterator(2); iterator.HasNext();)
+            {
+                Console.WriteLine(iterator.GetNext());
+            }
+
         }
     }
 }
