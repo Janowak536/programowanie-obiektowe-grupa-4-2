@@ -1,12 +1,42 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Drawing;
+using System.Linq;
 
-class App
+class App:Exercise2
 {
     public static void Main(string[] args)
     {
-
+        //(int, int) point1 = (5, 4);
+        //(int, int) screenSize = (5, 5);
+        //Direction4 direction = Direction4.DOWN;
+        //var point2 = NextPoint(direction, point1, screenSize);
+        //Console.WriteLine(point2);
+        //int[,] screen =
+        //{
+        //  {1, 0, 0},
+        //  {0, 0, 0},
+        //  {0, 0, 0}
+        //};
+        //(int, int) point = (1, 1);
+        //Direction8 direction = DirectionTo(screen, point, 1);
+        //Car[] _cars = new Car[]
+        // {
+        //     new Car(),
+        //     new Car(Model: "Fiat", true),
+        //     new Car(),
+        //     new Car(Power: 100),
+        //     new Car(Model: "Fiat", true),
+        //     new Car(Power: 125),
+        //     new Car(),
+        //};
+        //    Console.WriteLine(CarCounter(_cars)); 
+        //Student[] students = {
+        //  new Student("Kowal","Adam", 'A'),
+        //  new Student("Nowak","Ewa", 'A')
+        //};
+        //AssignStudentId(students);
     }
 }
 
@@ -45,7 +75,48 @@ class Exercise1
 {
     public static (int, int) NextPoint(Direction4 direction, (int, int) point, (int, int) screenSize)
     {
-        throw new NotImplementedException();
+        var Point = point;
+        int x = Point.Item1;
+        int y = Point.Item2;
+        var ScreenSize = screenSize;
+        int size1 = ScreenSize.Item1;
+        int size2 = ScreenSize.Item2;
+        if (direction == Direction4.UP && y == 0)
+        {
+            return Point;
+        }
+        else if (direction == Direction4.LEFT && x == 0 && x >= size1 && y >= size2)
+        {
+            return Point;
+        }else if(direction == Direction4.RIGHT &&x>= size1){
+            return Point;
+        }
+        else if (direction == Direction4.DOWN && y >= size2)
+        {
+            return Point;
+        }
+        else
+        {
+           switch(direction)
+            {
+                case Direction4.UP:
+                    return Point = (x, y - 1);
+            
+                case Direction4.DOWN:
+                    return Point = (x, y+1);
+            
+                case Direction4.LEFT:
+                    return Point = (x-1, y);
+            
+                case Direction4.RIGHT:
+                    return Point = (x+1, y);
+            
+                default:
+                    return Point;
+                   
+        }
+            
+        }
     }
 }
 //Cwiczenie 2
@@ -77,7 +148,63 @@ class Exercise2
 
     public static Direction8 DirectionTo(int[,] screen, (int, int) point, int value)
     {
-        throw new NotImplementedException();
+        int x = point.Item1;
+        int y = point.Item2;
+
+        for (int i = 0; i < x; i++)
+        {
+            for (int z = 0; z < y; z++)
+            {
+                if (value == screen[i,z])
+                {
+                    if (y-1 == z && x == i)
+                    {
+                        Console.WriteLine("UP");
+                        return Direction8.UP;
+                    }else if(y-1==z && x + 1 == i)
+                    {
+                        Console.WriteLine("UP_RIGHT");
+                        return Direction8.UP_RIGHT;
+                    }
+                    else if (y== z && x + 1 == i)
+                    {
+                        Console.WriteLine("RIGHT");
+                        return Direction8.RIGHT;
+                    }
+                    else if (y+1 == z && x + 1 == i)
+                    {
+                        Console.WriteLine("DOWN_RIGHT");
+                        return Direction8.DOWN_RIGHT;
+                    }
+                    else if (y + 1 == z && x == i)
+                    {
+                        Console.WriteLine("DOWN");
+                        return Direction8.DOWN;
+                    }
+                    else if (y + 1 == z && x - 1 == i)
+                    {
+                        Console.WriteLine("DOWN_LEFT");
+                        return Direction8.DOWN_LEFT;
+                    }
+                    else if (y == z && x - 1 == i)
+                    {
+                        Console.WriteLine("LEFT");
+                        return Direction8.LEFT;
+                    }
+                    else if (y - 1 == z && x - 1 == i)
+                    {
+                        Console.WriteLine("UP_LEFT");
+                        return Direction8.UP_LEFT;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+            }
+        }
+        Console.WriteLine("UP");
+        return Direction8.UP;
+        
     }
 }
 
@@ -102,7 +229,19 @@ class Exercise3
 {
     public static int CarCounter(Car[] cars)
     {
-        throw new NotImplementedException();
+        var DicOfCars = new Dictionary<object, int>();
+        foreach (var item in cars)
+        {
+            if (DicOfCars.ContainsKey(item))
+            {
+                DicOfCars[item]++;
+            }
+            else
+            {
+                DicOfCars[item] = 1;
+            }
+        }
+        return DicOfCars.Values.Max();
     }
 }
 
@@ -124,6 +263,61 @@ class Exercise4
 {
     public static void AssignStudentId(Student[] students)
     {
-
+        int A = 0;
+        int B = 0;
+        int C = 0;
+        foreach (var student in students)
+        {
+            string Group = student.Group.ToString();
+            if (Group == "A")
+            {
+                A++;
+                if (A <= 9 && A>=0)
+                { 
+                    //student.StudentId = $"{student.Group}00{count}";
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}00{A}'");
+                }
+                else if (A >= 10 && A <= 99)
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}0{A}'");
+                }
+                else
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}{A}'");
+                }
+            }
+            else if (Group == "B")
+            {
+                B++;
+                if (B <= 9 && B>=0)
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}00{B}'");
+                }
+                else if (B >= 10 && B <= 99)
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}0{B}'");
+                }
+                else
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}{B}'");
+                }
+            }
+            else
+            {
+                C++;
+                if (C <= 9 && C >= 0)
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}00{C}'");
+                }
+                else if (C >= 10 && C <= 99)
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}0{C}'");
+                }
+                else
+                {
+                    Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{student.Group}{C}'");
+                }
+            }
+        }
     }
 }
