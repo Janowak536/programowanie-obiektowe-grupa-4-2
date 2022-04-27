@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-1", "lab-1\lab-1.csproj", "{4630C6DC-0BA3-4E64-9D6B-360850E6514A}"
 EndProject
@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-3-zadanie-do-odeslania-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-4-zadanie-do-odeslania-na-zajeciach", "lab-4-zadanie-do-odeslania-na-zajeciach\lab-4-zadanie-do-odeslania-na-zajeciach.csproj", "{EAE5397D-39B0-4F85-8832-8CE91C449A97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab-5", "lab-5\lab-5.csproj", "{B26589CB-8067-4D8A-A669-C674CC3A633B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-5", "lab-5\lab-5.csproj", "{B26589CB-8067-4D8A-A669-C674CC3A633B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab-5-zadanie-do-odeslania-na-zajeciach", "lab-5-zadanie-do-odeslania-na-zajeciach\lab-5-zadanie-do-odeslania-na-zajeciach.csproj", "{EF72666A-0617-44E3-B7E1-5E24785BB77B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab-5-zadanie-do-odeslania-na-zajeciach", "lab-5-zadanie-do-odeslania-na-zajeciach\lab-5-zadanie-do-odeslania-na-zajeciach.csproj", "{EF72666A-0617-44E3-B7E1-5E24785BB77B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab-6", "lab-6\lab-6.csproj", "{C82D6305-AB60-45A6-9200-86AFEC294008}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{EF72666A-0617-44E3-B7E1-5E24785BB77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF72666A-0617-44E3-B7E1-5E24785BB77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF72666A-0617-44E3-B7E1-5E24785BB77B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C82D6305-AB60-45A6-9200-86AFEC294008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C82D6305-AB60-45A6-9200-86AFEC294008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C82D6305-AB60-45A6-9200-86AFEC294008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C82D6305-AB60-45A6-9200-86AFEC294008}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
