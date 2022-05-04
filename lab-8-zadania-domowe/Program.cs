@@ -1,5 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 
 class Program
@@ -126,11 +130,9 @@ class Program
     //Zaimplementuja metodę, aby zwracała listę polskich maist posortowanych alfabetycznie
     public static List<City> PolishCities(IEnumerable<City> cities, IEnumerable<Country> countries)
     {
-        var sortedCities = cities
-            .Where(x=> x.CountryCode=="PL")
-            .OrderBy(x=>x.Name)
-            .ToList();
-        return sortedCities;
+        var sorted = cities.Where(x => x.CountryCode == "PL").OrderBy(x => x.Name).ToList();
+        Console.WriteLine(cities.Where(x => x.CountryCode == "PL").OrderBy(x => x.Name).ToList());
+        return sorted;
     }
 
     //Zadanie 2
@@ -139,9 +141,11 @@ class Program
     public static IEnumerable<(string CountryCode, int CitiesCount)> CountryCities(IEnumerable<City> cities,
         IEnumerable<Country> countries)
     {
-         var krotka = from c in cities
-                      group by c.CountryCode
-                      into gr select (gr.Key,gr.Count());
+        var krotka = 
+            from c in cities
+            group c by c.CountryCode 
+            into cc
+            select (cc.Key, cc.Count());
         return krotka;
     }
 
@@ -151,7 +155,15 @@ class Program
     public static IEnumerable<(string CountryName, string Capital, long CapitalPopulation)> Capitals(
         IEnumerable<City> cities, IEnumerable<Country> countries)
     {
-        throw new NotImplementedException();
+        var querry = countries
+            .Where(c => cities
+            .Any(cp => cp.Name == c.Capital || cp.Name == "" || c.Capital == "" ))
+            .OrderBy(c => c.CountryName)
+            .Select(krotka => ValueTuple
+            .Create(krotka.CountryName, krotka.Capital, cities
+            .FirstOrDefault(c => c.Name == krotka.Capital || krotka.Capital == "" || c.Name == "").Population))
+            ;
+        return querry;
     }
 
     //Zadanie 4
@@ -159,7 +171,10 @@ class Program
     //Zapisz wyrażenie z użyciem LINQ Fluent Api i klasy Enumerable
     public static IEnumerable<int> EvenNumbers(int max)
     {
-        throw new NotImplementedException();
+        IEnumerable<int> maxValue = Enumerable
+            .Range(0, max)
+            .Where(n => n % 2 == 0);
+        return maxValue;
     }
 
     //Zadanie 5
@@ -170,7 +185,20 @@ class Program
     //Zapisz wyrażenie z użyciem LINQ Fluent Api i klasy Enumerable
     public static IEnumerable<string> RandomNames(int count)
     {
-        throw new NotImplementedException();
+        string[] names = { "Ewa", "Karol", "Adam" };
+        string res = Enumerable
+            .Range(2, count)
+            .Select(n => names[n])
+            .ToString();
+        Random random = new Random();
+        int index = names.Length;
+        IEnumerable<string> result = Enumerable
+            .Range(0, count)
+            .Select(n => names[random.Next(index)]);
+        var result2 = Enumerable
+            .Range(0, count)
+            .Select(n => names[random.Next(3)]);
+        return result;
     }
 
     //Zadanie 6
@@ -180,7 +208,19 @@ class Program
     //"A", "AA", "AAA", "AAAA"
     public static IEnumerable<string> Ramp(string s, int count)
     {
-        throw new NotImplementedException();
+        List<string> resultString = new List<string>();
+        for (int i = 0; i <= count; i++)
+        {
+            string str = string
+                .Concat(Enumerable.Repeat(s, i));
+            resultString.Add(str + "");
+
+        }
+        IEnumerable<string> result = resultString
+            .Select(x => x)
+            .Where(x => x.Contains(s));
+       
+        return result;
     }
 
     //Zadanie 7
@@ -195,7 +235,7 @@ class Program
     //Zastosuj wyłącznie LINQ i metody Prepend i Append 
     public static IEnumerable<string> Tree(int height)
     {
-        
+
         throw new NotImplementedException();
     }
 
