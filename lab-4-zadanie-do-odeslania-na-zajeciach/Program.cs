@@ -8,6 +8,7 @@ class App:Exercise2
 {
     public static void Main(string[] args)
     {
+
         //(int, int) point1 = (5, 4);
         //(int, int) screenSize = (5, 5);
         //Direction4 direction = Direction4.DOWN;
@@ -21,17 +22,17 @@ class App:Exercise2
         //};
         //(int, int) point = (1, 1);
         //Direction8 direction = DirectionTo(screen, point, 1);
-        //Car[] _cars = new Car[]
-        // {
-        //     new Car(),
-        //     new Car(Model: "Fiat", true),
-        //     new Car(),
-        //     new Car(Power: 100),
-        //     new Car(Model: "Fiat", true),
-        //     new Car(Power: 125),
-        //     new Car(),
-        //};
-        //    Console.WriteLine(CarCounter(_cars)); 
+        Car[] _cars = new Car[]
+         {
+             new Car(),
+             new Car(Model: "Fiat", true),
+             new Car(),
+             new Car(Power: 100),
+             new Car(Model: "Fiat", true),
+             new Car(Power: 125),
+             new Car(),
+        };
+        Console.WriteLine(Exercise3.CarCounter(_cars));
         //Student[] students = {
         //  new Student("Kowal","Adam", 'A'),
         //  new Student("Nowak","Ewa", 'A')
