@@ -5,6 +5,8 @@ class App
 {
     public static void Main(string[] args)
     {
+        string[] arr = { "adam", "ola", "adam", "ewa", "karol", "ala", "adam", "ola" };
+        Exercise3.countElements(arr, "adam", "ewa", "ola");
         //UWAGA!!! Nie usuwaj poniższego wiersza!!!
         //Console.WriteLine("Otrzymałeś punktów: " + (Test.Exercises_1() + Test.Excersise_2() + Test.Excersise_3()));
     }
@@ -72,7 +74,7 @@ public class Exercise2
         ValueTuple<string, int, bool> tuple = ValueTuple.Create("Karol", 12, true);
         return tuple;
     }
-
+    
     //Zdefiniuj poniższą metodę, aby zwracała krotkę o dwóch polach
     //firstAndLast: z tablicą dwuelementową z pierwszym i ostatnim elementem tablicy input
     //isSame: z wartością logiczną określająca równość obu elementów
@@ -120,14 +122,14 @@ public class Exercise3
         int count = 0;
 
 
-        foreach (var item in elements)
+        foreach (var item in arr)
         {
 
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i].Equals(item))
                 {
-                     count++;
+                    count++; 
                 }
             }
             tuple = new[] { (item, count) };
