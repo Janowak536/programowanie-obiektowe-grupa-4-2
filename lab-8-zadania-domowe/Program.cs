@@ -20,11 +20,13 @@ class Program
 
     public static void Main(string[] args)
     {
+
         Console.WriteLine();
         int points = 0;
         points += Test(() =>
         {
             var polishCities = PolishCities(cities, countries);
+
             if (polishCities.Count == 3677
                 && polishCities.Any(c => c.Name.Equals("Warsaw"))
                 && polishCities.Any(city => city.Name.Equals("Nowa Słupia") && city.Population == 1422)

@@ -5,7 +5,6 @@ namespace lab_6
 {
     class Student:IComparable<Student>
     {
-
         public string Name { get; set; }
         public int Ects { get; set; }
 
@@ -70,7 +69,6 @@ namespace lab_6
                 Console.WriteLine($"{item.Name} , {item.Ects}");
             }
             Console.WriteLine(students.Contains(new Student() { Name= "Ewa1", Ects=25}));
-
             List<Student> list = (List<Student>)students;
             Console.WriteLine();
             Console.WriteLine(list[0]);

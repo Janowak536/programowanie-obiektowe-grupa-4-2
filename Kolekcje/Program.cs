@@ -7,7 +7,7 @@ namespace Kolekcje
     {
         static void Main(string[] args)
         {
-            #region ICollection
+            /*#region ICollection
             string[] array = { "adam", "ola", "karol" };
             ICollection<string> namesToCollection = new LinkedList<string>(array);
 
@@ -24,7 +24,7 @@ namespace Kolekcje
             #endregion
 
             #region IList
-            IList<string> namesToList = new List<string>() { "adam", "ola", "karol" };
+            /*IList<string> namesToList = new List<string>() { "adam", "ola", "karol" };
 
             Console.WriteLine($"Liczba elementów: {namesToList.Count}");
             Console.WriteLine($"Element pod indeksem 2: {namesToList[2]}");
@@ -34,8 +34,7 @@ namespace Kolekcje
             namesToList.Insert(1, "ewa");
             Console.WriteLine($"Lista po wstawieniu elementu na pozycji 1: {String.Join(", ", namesToList)}");
             #endregion
-
-
+            
             #region ISet
             Dictionary<string, int> numbers = new Dictionary<string, int>();
             numbers.Add("one", 1);
@@ -66,17 +65,20 @@ namespace Kolekcje
             #endregion
 
             #region IComparer LengthComparer
+            /*
             List<string> names = new List<string>() { "adam", "ola", "karol" };
             names.Sort(new LengthComparer());
             Console.WriteLine(String.Join(", ", names));
+           
             #endregion
-
+            */
             HashSet<User> users = new HashSet<User>();
             users.Add(new User { Name = "adam", Points = 10 });
-            users.Add(new User { Name = "adam", Points = 10 });
-            users.Add(new User { Name = "adam", Points = 10 });
+
             Console.WriteLine(String.Join(", ", users));
 
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine(users.Equals(new User { Name = "adam", Points = 10 })); 
         }
     }
     class LengthComparer: IComparer<string>

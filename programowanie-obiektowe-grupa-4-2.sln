@@ -40,7 +40,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iterator", "Iterator\Iterator.csproj", "{C3FF486A-8A25-4BF3-AA22-EB8A79434AF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolekcje", "Kolekcje\Kolekcje.csproj", "{AA2B1F2D-0777-4E73-A841-77F6907BF306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolekcje", "Kolekcje\Kolekcje.csproj", "{AA2B1F2D-0777-4E73-A841-77F6907BF306}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zadania-do-kolosa", "Zadania-do-kolosa\Zadania-do-kolosa.csproj", "{B64353F8-C902-4449-B3D4-2241EF7105A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testlab4", "testlab4\testlab4.csproj", "{11F7D217-7F94-4E18-A509-737E62487DAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +120,14 @@ Global
 		{AA2B1F2D-0777-4E73-A841-77F6907BF306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA2B1F2D-0777-4E73-A841-77F6907BF306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA2B1F2D-0777-4E73-A841-77F6907BF306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B64353F8-C902-4449-B3D4-2241EF7105A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B64353F8-C902-4449-B3D4-2241EF7105A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B64353F8-C902-4449-B3D4-2241EF7105A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B64353F8-C902-4449-B3D4-2241EF7105A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F7D217-7F94-4E18-A509-737E62487DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F7D217-7F94-4E18-A509-737E62487DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F7D217-7F94-4E18-A509-737E62487DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F7D217-7F94-4E18-A509-737E62487DAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

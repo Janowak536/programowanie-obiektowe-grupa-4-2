@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "lab-8-zadania-domowe": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {},
+      "distributionName": ""
+    }
+  }
+}

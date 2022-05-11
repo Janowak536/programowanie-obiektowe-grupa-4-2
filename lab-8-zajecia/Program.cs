@@ -31,7 +31,6 @@ namespace lab_8_zajecia
                 Console.WriteLine("wywołanie predykatu dla " + n);
                 return n % 2 == 0;
             };
-
             evenNumbers = from n in ints
                           where intPredicate.Invoke(n)
                           select n;

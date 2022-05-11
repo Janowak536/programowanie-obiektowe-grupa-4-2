@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApp
 {
@@ -9,6 +10,19 @@ namespace ConsoleApp
         public record Student(string Name, int Points, char Egzam);
         static void Main(string[] args)
         {
+
+            string str = "ala ma kota ala lubi koty karol lubi psy";
+
+            IEnumerable<(string Key, int)> texts =
+                from u in str.Split(" ")
+                group str by u into groupItem
+                select (groupItem.Key, groupItem.Count());
+
+            Console.WriteLine(string.Join(", ", texts));
+
+            /*IList<int> numbers = new List<int>() { 1, 2, 3 };
+            Console.WriteLine(Mapper.to(numbers, "empty", "numbers"));
+
 
             ISet<string> setA = new HashSet<string>();
             setA.Add("ala");
@@ -65,8 +79,15 @@ namespace ConsoleApp
                 var studentWithChanges = student with { Name = "Ewa" };
                 Console.WriteLine(studentWithChanges);
                 */
-            }
         }
+        }
+    public class Mapper
+    {
+        public static V to<T, V>(ICollection<T> values, V empty, V any)
+        {
+            return values.Count == 0 ? empty : any;
+        }
+    }
     public class MyCollection<T> : IEnumerable<T>
     {
         internal T[] items;

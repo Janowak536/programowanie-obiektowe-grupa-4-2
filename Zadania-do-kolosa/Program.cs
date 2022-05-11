@@ -182,24 +182,23 @@ class Program
     //np. dla value 10 powinien zwrócić "A"
     public static IntFormatter HexFormatter()
     {
-
         return delegate (int value)
         {
-            string hexValue = value.ToString("X");
-            return hexValue;
+            return value.ToString("X");
         };
-        
     }
     //Zadanie 2
     //zwróć delegata typu operation, który dodaje oba argumenty 
-    static double AddFunction(double a, double b)
+    static double AddFunction(double a,double b)
     {
         return a + b;
     }
     public static operation AddOperation()
     {
+        //usuń zgłoszenie wyjątku i wpisz rozwiązanie
         operation Add = AddFunction;
         return Add;
+        
     }
 
     //Zadanie 3
@@ -224,7 +223,7 @@ class Program
     //zwroć w metodzie lambdę, która wyświetla na konsoli przekazany łańcuch wielkimi literami
     public static Action<string> StringConsumer()
     {
-        return x => Console.WriteLine(x.ToUpper());
+        return x => x.ToUpper();
     }
     //Zadanie 6
     //zwroć w metodzie lambdę, która zwraca argument podniesiony do kwadratu
@@ -238,7 +237,7 @@ class Program
     //- każdy znak jest cyfrą
     public static Predicate<string> IsPhoneNumber()
     {
-        return x => x.Length==9&&x.All(char.IsDigit);
+        return x=>x.Length==9&&x.All(char.IsDigit);
     }
     public static List<Person> LoadPeople(List<String> RawData, Predicate<string> validator)
     {
@@ -266,18 +265,18 @@ class Program
     {
         return LoadPeople(data, x =>
         {
-            string[] vs = x.Split(' ');
-            string a = vs[0];
-            int b = int.Parse(vs[1]);
-            if(a.Length==9 && a.All(char.IsDigit)&& b > 0)
+            string[] text = x.Split(' ');
+            string a = text[0];
+            int b = int.Parse(text[1]);
+            if (a.Length==9 && a.All(char.IsDigit)&&b>0)
             {
                 return true;
             }
-            else
             {
                 return false;
             }
         });
+        
     }
 
     //Zadanie 9
@@ -308,5 +307,6 @@ class Messenger
         OnBroadcast(message);
     }
 }
+
 
 
